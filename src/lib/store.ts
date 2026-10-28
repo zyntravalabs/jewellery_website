@@ -29,7 +29,7 @@ function set(next: State) {
 
 export function useShop() {
   const s = useSyncExternalStore(
-    (cb) => { load(); listeners.add(cb); cb(); return () => listeners.delete(cb); },
+    (cb) => { load(); listeners.add(cb); return () => listeners.delete(cb); },
     () => { load(); return state; },
     () => SERVER,
   );
