@@ -5,17 +5,17 @@ import { collections, type Product } from "@/lib/catalog";
 import { ProductCard } from "./ProductCard";
 
 export type CatalogueSearch = {
-  metal?: string; type?: string; occasion?: string; style?: string; collection?: string;
-  max?: number; sort?: "featured" | "new" | "price-asc" | "price-desc" | "name";
+  metal?: string | undefined; type?: string | undefined; occasion?: string | undefined; style?: string | undefined; collection?: string | undefined;
+  max?: number | undefined; sort?: "featured" | "new" | "price-asc" | "price-desc" | "name" | undefined;
 };
 
 export function validateCatalogueSearch(s: Record<string, unknown>): CatalogueSearch {
   const str = (v: unknown) => (typeof v === "string" && v ? v : undefined);
   const sorts = ["featured", "new", "price-asc", "price-desc", "name"];
   return {
-    metal: str(s.metal), type: str(s.type), occasion: str(s.occasion), style: str(s.style), collection: str(s.collection),
-    max: typeof s.max === "number" ? s.max : s.max ? Number(s.max) || undefined : undefined,
-    sort: sorts.includes(String(s.sort)) ? (s.sort as CatalogueSearch["sort"]) : undefined,
+    metal: str(s["metal"]), type: str(s["type"]), occasion: str(s["occasion"]), style: str(s["style"]), collection: str(s["collection"]),
+    max: typeof s["max"] === "number" ? s["max"] : s["max"] ? Number(s["max"]) || undefined : undefined,
+    sort: sorts.includes(String(s["sort"])) ? (s["sort"] as CatalogueSearch["sort"]) : undefined,
   };
 }
 
