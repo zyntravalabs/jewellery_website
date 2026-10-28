@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { searchProducts } from "@/lib/catalog";
 
 export const Route = createFileRoute("/search")({
-  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" ? s.q : "" }),
+  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s["q"] === "string" ? s["q"] : "" }),
   head: () => ({
     meta: [
       { title: "Search — AURÉVA Fine Jewellery (Demo)" },
